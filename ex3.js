@@ -24,8 +24,8 @@ const alunos = [
     const remover = () => {
         const prompt = require("prompt-sync")();//faltou o prompt-sync
         const indice =+prompt("Qual indice você deseja remover? ")-1;
-        alunos.splice(indice, 1);//para tirar
-        console.log("Jogo removido com sucesso");
+        alunos.splice(indice, 1);//para tirar alunos.splice(aluno);
+        console.log("Aluno removido com sucesso");// jogo
         console.log(alunos);
         };
         console.log(remover());
