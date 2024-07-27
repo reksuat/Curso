@@ -1,5 +1,5 @@
 const prompt= require("prompt-sync")();
-
+let alunos= []
 const modelo = () => {
     const nomeAluno = prompt("Nome do aluno: ");
     const dataNascimento = parseInt(prompt("Ano de nascimento (AAAA): "), 10);
@@ -22,9 +22,8 @@ return undefined;
 const criar = () => {
     const aluno = modelo();
 if (aluno != undefined) { 
-    alunos.push({ nomeAluno, dataNascimento, curso, periodo });
+    alunos.push(aluno);
     console.log("Aluno cadastrado com sucesso");
-    console.log(alunos);
     }
     };
 
@@ -51,40 +50,48 @@ const listar = () => {
 
 
 const remover = () => {
+    listar()
     const prompt = require("prompt-sync")();
     const indice =+prompt("Qual indice você deseja remover? ")-1;
     alunos.splice(indice, 1);
     console.log("Aluno removido com sucesso");
-    console.log(alunos);
     };
 
 
     const atualizar = () => {
+        listar();
         const prompt = require("prompt-sync")(); 
         const indice = +prompt("Qual o indice que deseja atualizar? ") - 1;
-        const nomeAluno = prompt("Nome do aluno: ");
-        const dataNascimento =
-        parseInt(prompt("Ano de nascimento (AAAA): "), 10);
-        const curso = prompt("Descrição do curso: ");
-        const periodo = prompt("Qual o período: ");
-        
-        const aluno = {
-        nomeAluno,
-        dataNascimento,
-        curso,
-        periodo,
-        };
+        let aluno= modelo()
         if (aluno !== undefined) {
         alunos[indice] =aluno; 
         console.log("Aluno atualizado com sucesso");
-        console.log(alunos);
+
         } else {
         console.log("Falha na atualização");
         }
         };
-        module.exports={
-            criar,
-            atualizar,
-            remover,
-            listar
-        }
+    const idades = () => {
+        const anoAtual = new Date().getFullYear();
+        let menor = 0;
+        let maior = 0;
+    
+        alunos.forEach(aluno => {
+            const idade = anoAtual - aluno.dataNascimento;
+            if (idade < 18) {
+                menor++;
+            } else {
+                maior++;
+            }
+        });
+        console.log("Alunos maiores de idade: ",maior);
+        console.log("Alunos menores de idade: ", menor);
+    }
+
+    module.exports={
+        criar,
+        atualizar,
+        remover,
+        listar,
+        idades
+    }

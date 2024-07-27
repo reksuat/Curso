@@ -1,6 +1,5 @@
 const prompt = require("prompt-sync")();
-const { criar, listar, remover, atualizar } = require("./registros");
-let =[]
+const { criar, listar, remover, atualizar, idades } = require("./registros");
 let escolha
 while (escolha!=0) {
     
@@ -11,6 +10,7 @@ while (escolha!=0) {
     //     2. Remover um Aluno
     //     3. Listar todos os 
     //     4. Atualizar um Aluno
+    //     5. Mostrar menores e maiores de idade
     //     0. Sair
     //     `);
     escolha=prompt("Escolha uma opção: ");
@@ -27,6 +27,9 @@ while (escolha!=0) {
                     case "4":
                         console.log(atualizar());
                         break
+                        case "5":
+                            console.log(idades());
+                            break
                         case "0":
                             console.log("encerrando..");
             break;
